@@ -28,7 +28,7 @@
 以下のリンクから、ご都合の良い枠をご予約ください。
 
 ▼面談予約リンク
-{Bookingsリンク}
+https://outlook.office.com/bookwithme/user/e00cba64bb3c4ea5a79366e4a5706ecd@autoaize.co.jp?anonymous&ismsaljsauthenabled&ep=plink
 
 当日お話しできるのを楽しみにしています！
 どうぞよろしくお願いいたします。
@@ -54,7 +54,7 @@ AutoAIze株式会社
 以下のリンクから、ご都合の良い枠をご予約ください。
 
 ▼面談予約リンク
-{Bookingsリンク}
+https://outlook.office.com/bookwithme/user/e00cba64bb3c4ea5a79366e4a5706ecd@autoaize.co.jp?anonymous&ismsaljsauthenabled&ep=plink
 
 当日お話しできるのを楽しみにしています！
 どうぞよろしくお願いいたします。
