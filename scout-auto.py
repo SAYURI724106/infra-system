@@ -49,9 +49,28 @@ print("kansai ok")
 students = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, 'e12i0ovq9') and contains(@class, 'MuiBox-root')]")))
 print(f"学生数: {len(students)}人")
 
-first_student = students[0]
-print("最初の学生情報:")
-print(first_student.text)
+students = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, 'e12i0ovq9') and contains(@class, 'MuiBox-root')]")))
 
-input("press enter...")
+# 親要素だけに絞る
+student_cards = driver.find_elements(By.XPATH, "//div[contains(@class, 'css-1i369cv')]")
+print(f"学生数: {len(student_cards)}人")
+
+for i, card in enumerate(student_cards[:3]):
+    print(f"\n--- 学生{i+1} ---")
+    
+    # 大学・学部
+    try:
+        univ = card.find_element(By.XPATH, ".//div[contains(@class, 'e12i0ovq3')]")
+        print("大学:", univ.text)
+    except:
+        print("大学: 取得失敗")
+    
+    # 出勤・時間
+    try:
+        work_info = card.find_elements(By.XPATH, ".//p[contains(@class, 'e12i0ovq2')]//span[@class='value']")
+        for w in work_info:
+            print(w.text)
+    except:
+        print("勤務情報: 取得失敗")
+        
 driver.quit()
