@@ -46,31 +46,43 @@ time.sleep(3)
 
 print("kansai ok")
 
-students = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, 'e12i0ovq9') and contains(@class, 'MuiBox-root')]")))
-print(f"学生数: {len(students)}人")
-
-students = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//div[contains(@class, 'e12i0ovq9') and contains(@class, 'MuiBox-root')]")))
-
-# 親要素だけに絞る
 student_cards = driver.find_elements(By.XPATH, "//div[contains(@class, 'css-1i369cv')]")
 print(f"学生数: {len(student_cards)}人")
 
-for i, card in enumerate(student_cards[:3]):
-    print(f"\n--- 学生{i+1} ---")
-    
-    # 大学・学部
+qualified = []
+
+for i, card in enumerate(student_cards):
     try:
         univ = card.find_element(By.XPATH, ".//div[contains(@class, 'e12i0ovq3')]")
-        print("大学:", univ.text)
+        univ_text = univ.text
     except:
-        print("大学: 取得失敗")
-    
-    # 出勤・時間
+        univ_text = "不明"
+
     try:
         work_info = card.find_elements(By.XPATH, ".//p[contains(@class, 'e12i0ovq2')]//span[@class='value']")
+        hours = ""
         for w in work_info:
-            print(w.text)
+            if "時間" in w.text:
+                hours = w.text
     except:
-        print("勤務情報: 取得失敗")
-        
+        hours = ""
+
+    is_qualified = False
+    if hours:
+        import re
+        nums = re.findall(r'\d+', hours)
+        if nums:
+            h_num = int(nums[0])
+            if h_num >= 32:
+                is_qualified = True
+
+    if is_qualified:
+        qualified.append({"大学": univ_text, "稼働": hours})
+        print(f"✅ {univ_text} | {hours}")
+    else:
+        print(f"❌ {univ_text} | {hours}")
+
+print(f"\n条件クリア: {len(qualified)}人 / {len(student_cards)}人")
+
+input("press enter...")
 driver.quit()
