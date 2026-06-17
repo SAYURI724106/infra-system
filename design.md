@@ -47,3 +47,16 @@ OfferBox版Auto Scoutと同じ構造で、Infraに対応したスカウト自動
 - 週32h未満の稼働しかできない
 
 ## デフォルトプロンプト（スカウト文生成用）
+
+## 技術構成
+- フロントエンド：HTML/CSS/JavaScript（Auto Scoutと同じ構造）
+- バックエンド：Python（FastAPI）
+- AI：Claude API（スコアリング・文章生成）
+- 媒体API：Infra APIキー
+- 実行環境：サーバー（Auto Scoutと同じ）
+
+## 次のステップ
+1. InfraのAPIキーを取得して仕様を確認する
+2. Auto Scoutのコードを参照してInfra版を実装する
+3. Dry Runでテストして動作確認する
+4. 本番実行で1日2件ずつ送信開始
